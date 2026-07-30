@@ -1,251 +1,288 @@
 @import url('https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;500&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
 
 /* ==========================================================================
-   TABLILLA DE RELACIONES — phpBB3
-   Paleta por defecto: azul acero. Variante lila: <div class="rlz rlz--lila">
-   Tipografia de titulos: cambia --rlz-display por la que use tu foro.
+   TABLILLA DE RELACIONES — phpBB3  ·  v2 blindada
+   Selectores de doble clase + !important porque el CSS del foro pisa.
+   El acento sale de --group. Si no hereda, cae al respaldo.
    ========================================================================== */
 
-.rlz {
-  --rlz-fondo:    #0a0a0b;
-  --rlz-panel:    #101013;
-  --rlz-titulo:   #e8e9ea;
-  --rlz-texto:    #a9adb2;
-  --rlz-tenue:    #6b7278;
-  --rlz-display:  'Grenze Gotisch', 'Times New Roman', serif;
-  --rlz-cuerpo:   'Open Sans', Arial, sans-serif;
+.rlz.rlz {
+  --rlz-fondo:   #0a0a0b;
+  --rlz-panel:   #101013;
+  --rlz-titulo:  #e8e9ea;
+  --rlz-texto:   #a9adb2;
+  --rlz-tenue:   #6b7278;
+  --rlz-display: 'Grenze Gotisch', 'Times New Roman', serif;
+  --rlz-cuerpo:  'Open Sans', Arial, sans-serif;
 
-  /* Acento = color de grupo del foro. El segundo valor es el respaldo
-     si --group no llega a heredarse hasta aqui. */
-  --rlz-acento:   var(--group, #5f93b3);
+  --rlz-acento:  var(--group, #5f93b3);
 
-  /* Borde: el color de grupo apagado sobre el fondo. La primera linea es
-     el respaldo para navegadores sin color-mix. */
-  --rlz-borde:    #22303a;
-  --rlz-borde:    color-mix(in srgb, var(--rlz-acento) 24%, #0c0c0e);
+  --rlz-borde:   #22303a;
+  --rlz-borde:   color-mix(in srgb, var(--rlz-acento) 24%, #0c0c0e);
 
-  background: var(--rlz-fondo);
-  border: 1px solid var(--rlz-borde);
-  padding: 14px;
-  font-family: var(--rlz-cuerpo);
-  width: 600px;
-  max-width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
+  display: block !important;
+  width: 600px !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 14px !important;
+  background: var(--rlz-fondo) !important;
+  border: 1px solid var(--rlz-borde) !important;
+  font-family: var(--rlz-cuerpo) !important;
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
 }
 
-/* Solo cambia el respaldo, no pisa el color de grupo. */
-.rlz--lila { --rlz-acento: var(--group, #a889c9); }
+.rlz .rlz__marco,
+.rlz .rlz__cat,
+.rlz .rlz__cat-cab,
+.rlz .rlz__grid,
+.rlz .rlz__ficha,
+.rlz .rlz__cuerpo,
+.rlz .rlz__titulo,
+.rlz .rlz__epigrafe,
+.rlz .rlz__cat-titulo,
+.rlz .rlz__cat-num,
+.rlz .rlz__nombre,
+.rlz .rlz__etiqueta,
+.rlz .rlz__texto,
+.rlz .rlz__filete,
+.rlz .rlz__pie {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+  text-shadow: none !important;
+}
 
-.rlz *,
-.rlz *:before,
-.rlz *:after { box-sizing: border-box; }
+/* phpBB mete <br> en cada salto de linea. Dentro de un grid se convierten
+   en celdas y descolocan las fichas, asi que fuera. Para separar parrafos
+   usa otro div .rlz__texto, no saltos de linea. */
+.rlz br { display: none !important; }
 
-/* phpBB convierte los saltos de linea en <br>: los neutralizamos.
-   Para separar parrafos usa <p>, no <br>. */
-.rlz br { display: none; }
-
-.rlz__marco {
-  border: 1px solid var(--rlz-borde);
-  padding: 22px;
+.rlz .rlz__marco {
+  border: 1px solid var(--rlz-borde) !important;
+  padding: 22px !important;
 }
 
 /* ---------- Cabecera ---------- */
 
-.rlz__titulo {
-  font-family: var(--rlz-display);
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 1.1;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--rlz-titulo);
-  text-align: center;
-  margin: 0;
+.rlz .rlz__titulo {
+  display: block !important;
+  font-family: var(--rlz-display) !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--rlz-titulo) !important;
+  text-align: center !important;
 }
 
-.rlz__epigrafe {
-  text-align: center;
-  color: var(--rlz-tenue);
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  margin: 7px 0 0;
+.rlz .rlz__epigrafe {
+  display: block !important;
+  font-family: var(--rlz-cuerpo) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase !important;
+  color: var(--rlz-tenue) !important;
+  text-align: center !important;
+  margin-top: 7px !important;
 }
 
-.rlz__filete {
-  height: 1px;
-  border: 0;
-  background: linear-gradient(90deg, transparent, var(--rlz-borde) 20%, var(--rlz-acento) 50%, var(--rlz-borde) 80%, transparent);
-  margin: 16px 0 26px;
+/* Es un div, no un hr: el hr del foro trae borde propio. */
+.rlz .rlz__filete {
+  display: block !important;
+  height: 1px !important;
+  border: 0 !important;
+  background: linear-gradient(90deg, transparent, var(--rlz-borde) 20%, var(--rlz-acento) 50%, var(--rlz-borde) 80%, transparent) !important;
+  margin: 16px 0 26px !important;
 }
 
 /* ---------- Categoria ---------- */
 
-.rlz__cat { margin-bottom: 26px; }
-.rlz__cat:last-child { margin-bottom: 0; }
+.rlz .rlz__cat { display: block !important; margin-bottom: 26px !important; }
+.rlz .rlz__cat:last-child { margin-bottom: 0 !important; }
 
-.rlz__cat-cab {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 13px;
+.rlz .rlz__cat-cab {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 13px !important;
 }
 
-.rlz__cat-cab:after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--rlz-borde);
+.rlz .rlz__cat-cab:after {
+  content: "" !important;
+  flex: 1 !important;
+  height: 1px !important;
+  background: var(--rlz-borde) !important;
 }
 
-.rlz__cat-titulo {
-  font-family: var(--rlz-display);
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--rlz-titulo);
-  margin: 0;
+.rlz .rlz__cat-titulo {
+  font-family: var(--rlz-display) !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--rlz-titulo) !important;
 }
 
-.rlz__cat-num {
-  color: var(--rlz-acento);
-  font-size: 10px;
-  letter-spacing: 0.18em;
+.rlz .rlz__cat-num {
+  font-family: var(--rlz-cuerpo) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.18em !important;
+  color: var(--rlz-acento) !important;
 }
 
 /* ---------- Rejilla de fichas ---------- */
 
-.rlz__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 10px;
+.rlz .rlz__grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important;
+  gap: 10px !important;
 }
 
-.rlz__ficha {
-  display: flex;
-  gap: 12px;
-  background: var(--rlz-panel);
-  border: 1px solid var(--rlz-borde);
-  border-left: 2px solid var(--rlz-acento);
-  padding: 10px;
-  min-width: 0;
+.rlz .rlz__ficha {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  min-width: 0 !important;
+  padding: 10px !important;
+  background: var(--rlz-panel) !important;
+  border: 1px solid var(--rlz-borde) !important;
+  border-left: 2px solid var(--rlz-acento) !important;
+  border-radius: 0 !important;
   transition: border-color 0.25s ease, background 0.25s ease;
 }
 
-.rlz__ficha:hover {
-  background: #14141a;
-  background: color-mix(in srgb, var(--rlz-acento) 9%, #101013);
-  border-color: var(--rlz-acento);
+.rlz .rlz__ficha:hover {
+  background: #14141a !important;
+  background: color-mix(in srgb, var(--rlz-acento) 9%, #101013) !important;
+  border-color: var(--rlz-acento) !important;
 }
 
-.rlz__retrato {
-  width: 64px;
-  height: 86px;
-  flex: none;
-  object-fit: cover;
-  display: block;
-  border: 1px solid var(--rlz-borde);
-  background: #3f3f42;
+.rlz .rlz__retrato {
+  display: block !important;
+  width: 64px !important;
+  height: 86px !important;
+  max-width: 64px !important;
+  flex: 0 0 64px !important;
+  object-fit: cover !important;
+  border: 1px solid var(--rlz-borde) !important;
+  border-radius: 0 !important;
+  background: #3f3f42 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   filter: grayscale(1);
   transition: filter 0.35s ease;
 }
 
-.rlz__ficha:hover .rlz__retrato { filter: grayscale(0); }
+.rlz .rlz__ficha:hover .rlz__retrato { filter: grayscale(0); }
 
-.rlz__cuerpo { min-width: 0; }
+.rlz .rlz__cuerpo { display: block !important; min-width: 0 !important; }
 
-.rlz__nombre {
-  font-family: var(--rlz-display);
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.1;
-  letter-spacing: 0.03em;
-  color: var(--rlz-titulo);
-  margin: 0;
+.rlz .rlz__nombre {
+  display: block !important;
+  font-family: var(--rlz-display) !important;
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.03em !important;
+  color: var(--rlz-titulo) !important;
 }
 
-.rlz__nombre a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
+.rlz .rlz__nombre a,
+.rlz .rlz__nombre a:link,
+.rlz .rlz__nombre a:visited {
+  font-family: var(--rlz-display) !important;
+  font-size: inherit !important;
+  color: var(--rlz-titulo) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent !important;
 }
 
-.rlz__nombre a:hover,
-.rlz__nombre a:focus-visible {
-  color: var(--rlz-acento);
-  border-bottom-color: var(--rlz-acento);
-  outline: none;
+.rlz .rlz__nombre a:hover,
+.rlz .rlz__nombre a:focus-visible {
+  color: var(--rlz-acento) !important;
+  border-bottom-color: var(--rlz-acento) !important;
+  outline: none !important;
 }
 
-.rlz__etiqueta {
-  display: block;
-  color: var(--rlz-acento);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin: 4px 0 7px;
+.rlz .rlz__etiqueta {
+  display: block !important;
+  font-family: var(--rlz-cuerpo) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--rlz-acento) !important;
+  margin: 4px 0 7px !important;
 }
 
-.rlz__texto {
-  color: var(--rlz-texto);
-  font-size: 12px;
-  line-height: 1.55;
-  font-style: italic;
-  margin: 0;
-  text-align: justify;
+.rlz .rlz__texto {
+  display: block !important;
+  font-family: var(--rlz-cuerpo) !important;
+  font-size: 12px !important;
+  font-style: italic !important;
+  line-height: 1.55 !important;
+  color: var(--rlz-texto) !important;
+  text-align: justify !important;
 }
 
-/* ---------- Variante compacta: solo avatar redondo ---------- */
+.rlz .rlz__texto + .rlz__texto { margin-top: 8px !important; }
 
-.rlz__grid--compacto {
-  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-  gap: 8px;
+/* ---------- Variante compacta: avatar redondo, sin descripcion ---------- */
+
+.rlz .rlz__grid--compacto {
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)) !important;
+  gap: 8px !important;
 }
 
-.rlz__grid--compacto .rlz__ficha {
-  display: block;
-  text-align: center;
-  border-left-width: 1px;
-  border-top: 2px solid var(--rlz-acento);
+.rlz .rlz__grid--compacto .rlz__ficha {
+  display: block !important;
+  text-align: center !important;
+  border-left-width: 1px !important;
+  border-top: 2px solid var(--rlz-acento) !important;
 }
 
-.rlz__grid--compacto .rlz__retrato {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 0 auto 8px;
+.rlz .rlz__grid--compacto .rlz__retrato {
+  width: 80px !important;
+  height: 80px !important;
+  max-width: 80px !important;
+  border-radius: 50% !important;
+  margin: 0 auto 8px !important;
 }
 
-.rlz__grid--compacto .rlz__nombre { font-size: 15px; }
-.rlz__grid--compacto .rlz__etiqueta { margin-bottom: 0; }
-.rlz__grid--compacto .rlz__texto { display: none; }
+.rlz .rlz__grid--compacto .rlz__nombre { font-size: 15px !important; }
+.rlz .rlz__grid--compacto .rlz__etiqueta { margin-bottom: 0 !important; }
+.rlz .rlz__grid--compacto .rlz__texto { display: none !important; }
 
 /* ---------- Pie ---------- */
 
-.rlz__pie {
-  border-top: 1px solid var(--rlz-borde);
-  margin-top: 22px;
-  padding-top: 12px;
-  color: var(--rlz-tenue);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-align: center;
+.rlz .rlz__pie {
+  display: block !important;
+  border-top: 1px solid var(--rlz-borde) !important;
+  margin-top: 22px !important;
+  padding-top: 12px !important;
+  font-family: var(--rlz-cuerpo) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--rlz-tenue) !important;
+  text-align: center !important;
 }
 
-/* ---------- Movil estrecho ---------- */
+/* ---------- Movil ---------- */
 
-@media (max-width: 480px) {
-  .rlz { padding: 8px; }
-  .rlz__marco { padding: 14px; }
-  .rlz__titulo { font-size: 25px; }
-  .rlz__grid { grid-template-columns: 1fr; }
+@media (max-width: 520px) {
+  .rlz.rlz { padding: 8px !important; }
+  .rlz .rlz__marco { padding: 14px !important; }
+  .rlz .rlz__titulo { font-size: 25px !important; }
+  .rlz .rlz__grid { grid-template-columns: 1fr !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rlz__ficha,
-  .rlz__retrato { transition: none; }
+  .rlz .rlz__ficha,
+  .rlz .rlz__retrato { transition: none; }
 }
