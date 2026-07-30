@@ -24,6 +24,10 @@
   --rlz-acento-txt: #c48484;
   --rlz-acento-txt: color-mix(in srgb, var(--rlz-acento) 60%, #ffffff);
 
+  /* Retrato: ancho fijo, alto derivado del ratio del avatar (250x400). */
+  --rlz-retrato: 64px;
+  --rlz-ratio:   250 / 400;
+
   --rlz-borde:   #262628;
   --rlz-borde:   color-mix(in srgb, var(--rlz-acento) 24%, #0c0c0e);
 
@@ -172,11 +176,13 @@
 
 .rlz .rlz__retrato {
   display: block !important;
-  width: 64px !important;
-  height: 86px !important;
-  max-width: 64px !important;
-  flex: 0 0 64px !important;
+  width: var(--rlz-retrato) !important;
+  max-width: var(--rlz-retrato) !important;
+  flex: 0 0 var(--rlz-retrato) !important;
+  height: auto !important;
+  aspect-ratio: var(--rlz-ratio) !important;
   object-fit: cover !important;
+  object-position: center 20% !important;
   border: 1px solid var(--rlz-borde) !important;
   border-radius: 0 !important;
   background: #3f3f42 !important;
@@ -257,6 +263,9 @@
   width: 80px !important;
   height: 80px !important;
   max-width: 80px !important;
+  flex: none !important;
+  aspect-ratio: 1 / 1 !important;
+  object-position: center 22% !important;
   border-radius: 50% !important;
   margin: 0 auto 8px !important;
 }
