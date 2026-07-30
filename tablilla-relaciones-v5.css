@@ -24,6 +24,9 @@
   --rlz-acento-txt: #c48484;
   --rlz-acento-txt: color-mix(in srgb, var(--rlz-acento) 60%, #ffffff);
 
+  /* Lineas visibles de la descripcion antes de que aparezca el scroll. */
+  --rlz-desc-lineas: 5;
+
   /* Retrato: ancho fijo, alto derivado del ratio del avatar (250x400). */
   --rlz-retrato: 64px;
   --rlz-ratio:   250 / 400;
@@ -241,6 +244,20 @@
   line-height: 1.55 !important;
   color: var(--rlz-texto) !important;
   text-align: justify !important;
+  max-height: calc(var(--rlz-desc-lineas) * 1.55em) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  padding-right: 8px !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--rlz-acento) transparent !important;
+}
+
+/* Barra de scroll fina y teñida del acento (Chrome, Safari, Edge). */
+.rlz .rlz__texto::-webkit-scrollbar { width: 3px !important; }
+.rlz .rlz__texto::-webkit-scrollbar-track { background: transparent !important; }
+.rlz .rlz__texto::-webkit-scrollbar-thumb {
+  background: var(--rlz-acento) !important;
+  border-radius: 0 !important;
 }
 
 .rlz .rlz__texto + .rlz__texto { margin-top: 8px !important; }
