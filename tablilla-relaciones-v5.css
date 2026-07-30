@@ -24,8 +24,9 @@
   --rlz-acento-txt: #c48484;
   --rlz-acento-txt: color-mix(in srgb, var(--rlz-acento) 60%, #ffffff);
 
-  /* Lineas visibles de la descripcion antes de que aparezca el scroll. */
-  --rlz-desc-lineas: 5;
+  /* Altura fija de la ficha: retrato (ratio 1.6) + padding + bordes.
+     Subela si quieres mas texto visible antes del scroll. */
+  --rlz-ficha-alto: calc(var(--rlz-retrato) * 1.6 + 22px);
 
   /* Retrato: ancho fijo, alto derivado del ratio del avatar (250x400). */
   --rlz-retrato: 64px;
@@ -163,6 +164,7 @@
   align-items: flex-start !important;
   gap: 12px !important;
   min-width: 0 !important;
+  height: var(--rlz-ficha-alto) !important;
   padding: 10px !important;
   background: var(--rlz-panel) !important;
   border: 1px solid var(--rlz-borde) !important;
@@ -197,7 +199,14 @@
 
 .rlz .rlz__ficha:hover .rlz__retrato { filter: grayscale(0); }
 
-.rlz .rlz__cuerpo { display: block !important; min-width: 0 !important; }
+.rlz .rlz__cuerpo {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  align-self: stretch !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
 
 .rlz .rlz__nombre {
   display: block !important;
@@ -244,7 +253,8 @@
   line-height: 1.55 !important;
   color: var(--rlz-texto) !important;
   text-align: justify !important;
-  max-height: calc(var(--rlz-desc-lineas) * 1.55em) !important;
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
   overflow-y: auto !important;
   overscroll-behavior: contain !important;
   padding-right: 8px !important;
@@ -274,6 +284,7 @@
   text-align: center !important;
   border-left-width: 1px !important;
   border-top: 2px solid var(--rlz-acento) !important;
+  height: auto !important;
 }
 
 .rlz .rlz__grid--compacto .rlz__retrato {
