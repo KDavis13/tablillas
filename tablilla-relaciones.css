@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;500&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
-
 /* ==========================================================================
    TABLILLA DE RELACIONES — phpBB3  ·  v2 blindada
    Selectores de doble clase + !important porque el CSS del foro pisa.
@@ -12,12 +10,17 @@
   --rlz-titulo:  #e8e9ea;
   --rlz-texto:   #a9adb2;
   --rlz-tenue:   #6b7278;
-  --rlz-display: 'Grenze Gotisch', 'Times New Roman', serif;
-  --rlz-cuerpo:  'Open Sans', Arial, sans-serif;
+  --rlz-display: 'TLLRegular', 'Times New Roman', serif;
+  --rlz-cuerpo:  inherit;
+  /* Nombres de las fichas. Si TLLRegular no trae minusculas, cambia esta
+     linea por: --rlz-nombre: inherit; */
+  --rlz-nombre:  var(--rlz-display);
 
-  --rlz-acento:  var(--group, #5f93b3);
+  /* Acento. Si --group no hereda, cae al segundo valor: cambialo por el
+     hex que quieras, o pasalo por post con style="--rlz-acento:#xxxxxx". */
+  --rlz-acento:  var(--group, #b94a3b);
 
-  --rlz-borde:   #22303a;
+  --rlz-borde:   #262628;
   --rlz-borde:   color-mix(in srgb, var(--rlz-acento) 24%, #0c0c0e);
 
   display: block !important;
@@ -185,7 +188,7 @@
 
 .rlz .rlz__nombre {
   display: block !important;
-  font-family: var(--rlz-display) !important;
+  font-family: var(--rlz-nombre) !important;
   font-weight: 400 !important;
   font-size: 18px !important;
   line-height: 1.1 !important;
@@ -193,18 +196,18 @@
   color: var(--rlz-titulo) !important;
 }
 
-.rlz .rlz__nombre a,
-.rlz .rlz__nombre a:link,
-.rlz .rlz__nombre a:visited {
-  font-family: var(--rlz-display) !important;
+.rlz .rlz__nombre a[href],
+.rlz .rlz__nombre a[href]:link,
+.rlz .rlz__nombre a[href]:visited {
+  font-family: var(--rlz-nombre) !important;
   font-size: inherit !important;
   color: var(--rlz-titulo) !important;
   text-decoration: none !important;
   border-bottom: 1px solid transparent !important;
 }
 
-.rlz .rlz__nombre a:hover,
-.rlz .rlz__nombre a:focus-visible {
+.rlz .rlz__nombre a[href]:hover,
+.rlz .rlz__nombre a[href]:focus-visible {
   color: var(--rlz-acento) !important;
   border-bottom-color: var(--rlz-acento) !important;
   outline: none !important;
