@@ -9,27 +9,33 @@
 .rlz {
   --rlz-fondo:    #0a0a0b;
   --rlz-panel:    #101013;
-  --rlz-borde:    #22303a;
-  --rlz-acento:   #5f93b3;
   --rlz-titulo:   #e8e9ea;
   --rlz-texto:    #a9adb2;
   --rlz-tenue:    #6b7278;
   --rlz-display:  'Grenze Gotisch', 'Times New Roman', serif;
   --rlz-cuerpo:   'Open Sans', Arial, sans-serif;
 
+  /* Acento = color de grupo del foro. El segundo valor es el respaldo
+     si --group no llega a heredarse hasta aqui. */
+  --rlz-acento:   var(--group, #5f93b3);
+
+  /* Borde: el color de grupo apagado sobre el fondo. La primera linea es
+     el respaldo para navegadores sin color-mix. */
+  --rlz-borde:    #22303a;
+  --rlz-borde:    color-mix(in srgb, var(--rlz-acento) 24%, #0c0c0e);
+
   background: var(--rlz-fondo);
   border: 1px solid var(--rlz-borde);
   padding: 14px;
   font-family: var(--rlz-cuerpo);
-  max-width: 900px;
+  width: 600px;
+  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
-.rlz--lila {
-  --rlz-borde:  #2e2635;
-  --rlz-acento: #a889c9;
-}
+/* Solo cambia el respaldo, no pisa el color de grupo. */
+.rlz--lila { --rlz-acento: var(--group, #a889c9); }
 
 .rlz *,
 .rlz *:before,
@@ -131,6 +137,7 @@
 
 .rlz__ficha:hover {
   background: #14141a;
+  background: color-mix(in srgb, var(--rlz-acento) 9%, #101013);
   border-color: var(--rlz-acento);
 }
 
