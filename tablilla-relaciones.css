@@ -16,9 +16,13 @@
      linea por: --rlz-nombre: inherit; */
   --rlz-nombre:  var(--rlz-display);
 
-  /* Acento. Si --group no hereda, cae al segundo valor: cambialo por el
-     hex que quieras, o pasalo por post con style="--rlz-acento:#xxxxxx". */
-  --rlz-acento:  var(--group, #b94a3b);
+  /* Acento. Si --group no hereda, cae al segundo valor. */
+  --rlz-acento:  var(--group, #9C3232);
+
+  /* El granate puro a 9px sobre negro se queda en 2.7:1 de contraste.
+     Para textos pequenos usamos el mismo color aclarado con blanco. */
+  --rlz-acento-txt: #c48484;
+  --rlz-acento-txt: color-mix(in srgb, var(--rlz-acento) 60%, #ffffff);
 
   --rlz-borde:   #262628;
   --rlz-borde:   color-mix(in srgb, var(--rlz-acento) 24%, #0c0c0e);
@@ -136,7 +140,7 @@
   font-family: var(--rlz-cuerpo) !important;
   font-size: 10px !important;
   letter-spacing: 0.18em !important;
-  color: var(--rlz-acento) !important;
+  color: var(--rlz-acento-txt) !important;
 }
 
 /* ---------- Rejilla de fichas ---------- */
@@ -219,7 +223,7 @@
   font-size: 9px !important;
   letter-spacing: 0.16em !important;
   text-transform: uppercase !important;
-  color: var(--rlz-acento) !important;
+  color: var(--rlz-acento-txt) !important;
   margin: 4px 0 7px !important;
 }
 
