@@ -1,0 +1,340 @@
+/* ==========================================================================
+   MOODBOARDS — phpBB3  ·  v1
+   Tres disposiciones en un mismo archivo:
+     .mdb__grid--mosaico   rejilla irregular con piezas que ocupan varias celdas
+     .mdb__grid--columnas  mamposteria, respeta el alto natural de cada imagen
+     .mdb__grid--tira      fila horizontal con scroll y anclaje
+   Mismo marco y misma paleta que la tablilla de relaciones.
+   ========================================================================== */
+
+.mdb.mdb {
+  --mdb-fondo:   #0a0a0b;
+  --mdb-panel:   #101013;
+  --mdb-titulo:  #e8e9ea;
+  --mdb-texto:   #a9adb2;
+  --mdb-tenue:   #6b7278;
+  --mdb-display: 'TLLRegular', 'Times New Roman', serif;
+  --mdb-cuerpo:  inherit;
+
+  --mdb-acento:  var(--group, #9C3232);
+
+  --mdb-acento-txt: #c48484;
+  --mdb-acento-txt: color-mix(in srgb, var(--mdb-acento) 60%, #ffffff);
+
+  --mdb-borde:   #262628;
+  --mdb-borde:   color-mix(in srgb, var(--mdb-acento) 24%, #0c0c0e);
+
+  /* Alto de la fila base del mosaico y de las piezas de la tira. */
+  --mdb-celda:   104px;
+  --mdb-hueco:   6px;
+
+  /* Proporcion de las piezas en la variante rejilla: 1/1, 3/4, 2/3... */
+  --mdb-rejilla-ratio: 3 / 4;
+
+  display: block !important;
+  width: 600px !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 14px !important;
+  background: var(--mdb-fondo) !important;
+  border: 1px solid var(--mdb-borde) !important;
+  font-family: var(--mdb-cuerpo) !important;
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+.mdb .mdb__marco,
+.mdb .mdb__titulo,
+.mdb .mdb__epigrafe,
+.mdb .mdb__filete,
+.mdb .mdb__bloque,
+.mdb .mdb__bloque-cab,
+.mdb .mdb__bloque-titulo,
+.mdb .mdb__grid,
+.mdb .mdb__pieza,
+.mdb .mdb__nota,
+.mdb .mdb__lema,
+.mdb .mdb__palabras,
+.mdb .mdb__palabra,
+.mdb .mdb__paleta,
+.mdb .mdb__color,
+.mdb .mdb__texto,
+.mdb .mdb__pie {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+  text-shadow: none !important;
+}
+
+.mdb br { display: none !important; }
+
+.mdb .mdb__marco {
+  border: 1px solid var(--mdb-borde) !important;
+  padding: 22px !important;
+}
+
+/* ---------- Cabecera ---------- */
+
+.mdb .mdb__titulo {
+  display: block !important;
+  font-family: var(--mdb-display) !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--mdb-titulo) !important;
+  text-align: center !important;
+}
+
+.mdb .mdb__epigrafe {
+  display: block !important;
+  font-size: 11px !important;
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase !important;
+  color: var(--mdb-tenue) !important;
+  text-align: center !important;
+  margin-top: 7px !important;
+}
+
+.mdb .mdb__filete {
+  display: block !important;
+  height: 1px !important;
+  border: 0 !important;
+  background: linear-gradient(90deg, transparent, var(--mdb-borde) 20%, var(--mdb-acento) 50%, var(--mdb-borde) 80%, transparent) !important;
+  margin: 16px 0 24px !important;
+}
+
+/* ---------- Bloque con titulo ---------- */
+
+.mdb .mdb__bloque { display: block !important; margin-bottom: 24px !important; }
+.mdb .mdb__bloque:last-child { margin-bottom: 0 !important; }
+
+.mdb .mdb__bloque-cab {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 12px !important;
+}
+
+.mdb .mdb__bloque-cab:after {
+  content: "" !important;
+  flex: 1 !important;
+  height: 1px !important;
+  background: var(--mdb-borde) !important;
+}
+
+.mdb .mdb__bloque-titulo {
+  font-family: var(--mdb-display) !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--mdb-titulo) !important;
+}
+
+/* ---------- Pieza: la imagen y su nota al pasar el raton ---------- */
+
+.mdb .mdb__pieza {
+  display: block !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background: #1a1a1d !important;
+  border: 1px solid var(--mdb-borde) !important;
+  border-radius: 0 !important;
+  min-width: 0 !important;
+}
+
+.mdb .mdb__pieza img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  filter: saturate(0.8) brightness(0.86) !important;
+  transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.mdb .mdb__pieza:hover img {
+  filter: saturate(1) brightness(1) !important;
+  transform: scale(1.04) !important;
+}
+
+.mdb .mdb__nota {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  padding: 12px 8px 6px !important;
+  background: linear-gradient(to top, rgba(10,10,11,0.92), transparent) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--mdb-acento-txt) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.mdb .mdb__pieza:hover .mdb__nota { opacity: 1 !important; }
+
+/* ---------- 1 · MOSAICO ---------- */
+
+.mdb .mdb__grid--mosaico {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  grid-auto-rows: var(--mdb-celda) !important;
+  grid-auto-flow: dense !important;
+  gap: var(--mdb-hueco) !important;
+}
+
+.mdb .mdb__grid--mosaico .mdb__pieza { height: 100% !important; }
+.mdb .mdb__pieza--ancha  { grid-column: span 2 !important; }
+.mdb .mdb__pieza--alta   { grid-row: span 2 !important; }
+.mdb .mdb__pieza--grande { grid-column: span 2 !important; grid-row: span 2 !important; }
+
+/* ---------- 1b · REJILLA uniforme: todas iguales, nunca deja huecos ------- */
+
+.mdb .mdb__grid--rejilla {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)) !important;
+  gap: var(--mdb-hueco) !important;
+}
+
+.mdb .mdb__grid--rejilla .mdb__pieza {
+  aspect-ratio: var(--mdb-rejilla-ratio, 3 / 4) !important;
+  height: auto !important;
+}
+
+/* ---------- 2 · COLUMNAS (mamposteria) ---------- */
+
+.mdb .mdb__grid--columnas {
+  display: block !important;
+  column-count: 3 !important;
+  column-gap: var(--mdb-hueco) !important;
+}
+
+.mdb .mdb__grid--columnas .mdb__pieza {
+  break-inside: avoid !important;
+  margin-bottom: var(--mdb-hueco) !important;
+  height: auto !important;
+}
+
+.mdb .mdb__grid--columnas .mdb__pieza img {
+  height: auto !important;
+  object-fit: fill !important;
+}
+
+/* ---------- 3 · TIRA con scroll ---------- */
+
+.mdb .mdb__grid--tira {
+  display: flex !important;
+  gap: var(--mdb-hueco) !important;
+  overflow-x: auto !important;
+  overscroll-behavior-x: contain !important;
+  scroll-snap-type: x mandatory !important;
+  padding-bottom: 8px !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--mdb-acento) transparent !important;
+}
+
+.mdb .mdb__grid--tira .mdb__pieza {
+  flex: 0 0 auto !important;
+  width: 132px !important;
+  height: calc(var(--mdb-celda) * 2) !important;
+  scroll-snap-align: start !important;
+}
+
+.mdb .mdb__grid--tira::-webkit-scrollbar { height: 3px !important; }
+.mdb .mdb__grid--tira::-webkit-scrollbar-track { background: transparent !important; }
+.mdb .mdb__grid--tira::-webkit-scrollbar-thumb { background: var(--mdb-acento) !important; }
+
+/* ---------- Extras: lema, palabras clave, paleta, texto ---------- */
+
+.mdb .mdb__lema {
+  display: block !important;
+  font-family: var(--mdb-display) !important;
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.04em !important;
+  color: var(--mdb-titulo) !important;
+  text-align: center !important;
+  margin: 18px 0 !important;
+}
+
+.mdb .mdb__palabras {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin-top: 14px !important;
+}
+
+.mdb .mdb__palabra {
+  display: inline-block !important;
+  padding: 4px 9px !important;
+  border: 1px solid var(--mdb-borde) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--mdb-acento-txt) !important;
+}
+
+.mdb .mdb__paleta {
+  display: flex !important;
+  gap: 4px !important;
+  margin-top: 14px !important;
+}
+
+.mdb .mdb__color {
+  display: block !important;
+  flex: 1 1 0 !important;
+  height: 22px !important;
+  border: 1px solid var(--mdb-borde) !important;
+}
+
+.mdb .mdb__texto {
+  display: block !important;
+  font-size: 12px !important;
+  font-style: italic !important;
+  line-height: 1.6 !important;
+  color: var(--mdb-texto) !important;
+  text-align: justify !important;
+  margin-top: 14px !important;
+}
+
+.mdb .mdb__pie {
+  display: block !important;
+  border-top: 1px solid var(--mdb-borde) !important;
+  margin-top: 22px !important;
+  padding-top: 12px !important;
+  font-size: 10px !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--mdb-tenue) !important;
+  text-align: center !important;
+}
+
+/* ---------- Movil ---------- */
+
+@media (max-width: 520px) {
+  .mdb.mdb { padding: 8px !important; }
+  .mdb .mdb__marco { padding: 14px !important; }
+  .mdb .mdb__titulo { font-size: 25px !important; }
+  .mdb.mdb { --mdb-celda: 76px; }
+  .mdb .mdb__grid--columnas { column-count: 2 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mdb .mdb__pieza img,
+  .mdb .mdb__nota { transition: none; }
+  .mdb .mdb__pieza:hover img { transform: none !important; }
+}
